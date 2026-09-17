@@ -1,0 +1,1 @@
+Hello from a TXT file! This fixture is used to test TXT upload and extraction.

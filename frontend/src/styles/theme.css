@@ -1,0 +1,206 @@
+:root {
+  --bg-primary: #05060d;
+  --bg-panel: #0b0e1a;
+  --bg-panel-raised: #111428;
+  --border-neon: #2a2f4a;
+
+  --accent-cyan: #00fff2;
+  --accent-magenta: #ff00e6;
+  --accent-violet: #7b2ff7;
+
+  --gradient-neon: linear-gradient(
+    90deg,
+    var(--accent-cyan) 0%,
+    var(--accent-violet) 55%,
+    var(--accent-magenta) 100%
+  );
+
+  --text-primary: #e8eaf6;
+  --text-muted: #8b90b3;
+
+  --new-token-glow: var(--accent-magenta);
+  --existing-token-glow: var(--accent-cyan);
+
+  --success: #00ffa3;
+  --error: #ff3860;
+
+  --font-mono: "SFMono-Regular", "Consolas", "Liberation Mono", Menlo, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius-md: 10px;
+  --radius-sm: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 20% -10%, #131735 0%, var(--bg-primary) 55%);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.panel-raised {
+  background: var(--bg-panel-raised);
+}
+
+.neon-border {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bg-panel), var(--bg-panel)) padding-box,
+    var(--gradient-neon) border-box;
+}
+
+.neon-text {
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-neon);
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.6rem 1.1rem;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.btn:hover:not(:disabled) {
+  box-shadow: 0 0 12px var(--accent-cyan);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--gradient-neon);
+  color: #05060d;
+  border: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 0 18px var(--accent-violet);
+  transform: translateY(-1px);
+}
+
+.token-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--existing-token-glow);
+  color: var(--text-primary);
+}
+
+.token-chip.is-new {
+  border-color: var(--new-token-glow);
+  box-shadow: 0 0 8px var(--new-token-glow);
+}
+
+.badge-new {
+  color: var(--new-token-glow);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.state-error {
+  color: var(--error);
+}
+
+.state-success {
+  color: var(--success);
+}
+
+.tab-strip {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border-neon);
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.6rem 0.1rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tab[aria-checked="true"] {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-cyan);
+}
+
+.tab-strip-sub {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.tab-sub {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-neon);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tab-sub:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.tab-sub:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tab-sub[aria-checked="true"] {
+  color: var(--text-primary);
+  border-color: var(--accent-magenta);
+  box-shadow: 0 0 10px var(--accent-magenta);
+}
