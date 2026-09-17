@@ -37,6 +37,7 @@ def tokenize(text: str, store: VocabularyStore) -> list[Token]:
                 start=match.start(),
                 end=match.end(),
                 is_new=token_text in newly_created_this_op,
+                bytes=list(token_text.encode("utf-8")),
             )
         )
 

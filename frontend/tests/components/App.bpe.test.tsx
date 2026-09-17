@@ -46,7 +46,7 @@ describe("App - BPE strategy", () => {
     vi.spyOn(tokenizerClient, "tokenize").mockResolvedValue({
       tokenizer_mode: "bpe",
       encoding: null,
-      tokens: [{ index: 0, id: 0, text: "a", start: 0, end: 1, is_new: false }],
+      tokens: [{ index: 0, id: 0, text: "a", start: 0, end: 1, is_new: false, bytes: [97] }],
       stats: {
         character_count: 1,
         word_count: 1,

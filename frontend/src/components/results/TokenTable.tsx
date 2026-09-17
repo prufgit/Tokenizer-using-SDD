@@ -6,35 +6,27 @@ interface TokenTableProps {
 
 export function TokenTable({ tokens }: TokenTableProps) {
   return (
-    <table className="panel" data-testid="token-table" style={{ width: "100%", borderCollapse: "collapse" }}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>Index</th>
-          <th style={{ textAlign: "left" }}>ID</th>
-          <th style={{ textAlign: "left" }}>Token</th>
-          <th style={{ textAlign: "left" }}>Offset</th>
-        </tr>
-      </thead>
-      <tbody>
+    <section style={{ marginTop: "1.5rem" }}>
+      <h3 className="section-label">Tokenized Output</h3>
+      <div className="panel token-grid" data-testid="token-table">
         {tokens.map((token) => (
-          <tr key={token.index} data-testid={`token-row-${token.index}`}>
-            <td>{token.index}</td>
-            <td>{token.id}</td>
-            <td>
-              <span
-                className={`token-chip${token.is_new ? " is-new" : ""}`}
-                data-testid={`token-chip-${token.index}`}
-              >
-                {token.text}
-                {token.is_new ? <span className="badge-new">NEW</span> : null}
-              </span>
-            </td>
-            <td>
-              {token.start}–{token.end}
-            </td>
-          </tr>
+          <div
+            key={token.index}
+            className={`token-card${token.is_new ? " is-new" : ""}`}
+            data-testid={`token-row-${token.index}`}
+          >
+            <div className="token-card-index">
+              #{token.index}
+              {token.is_new ? <span className="badge-new" style={{ marginLeft: "0.4rem" }}>NEW</span> : null}
+            </div>
+            <div className="token-card-text" data-testid={`token-chip-${token.index}`}>
+              {token.text}
+            </div>
+            <div className="token-card-meta">ID: {token.id}</div>
+            <div className="token-card-meta">Bytes: [{token.bytes.join(", ")}]</div>
+          </div>
         ))}
-      </tbody>
-    </table>
+      </div>
+    </section>
   );
 }

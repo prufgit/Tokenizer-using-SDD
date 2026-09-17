@@ -10,6 +10,14 @@ def test_splits_words_and_punctuation_as_separate_tokens():
     assert texts == ["Hello", ",", "world", "!"]
 
 
+def test_token_bytes_match_utf8_encoding_of_text():
+    store = VocabularyStore()
+    tokens = tokenize("café!", store)
+
+    for token in tokens:
+        assert token.bytes == list(token.text.encode("utf-8"))
+
+
 def test_offsets_match_exact_positions_in_source_text():
     text = "Hello, world!"
     store = VocabularyStore()

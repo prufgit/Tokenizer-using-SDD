@@ -18,6 +18,8 @@ def test_tokenize_returns_real_ids_and_text_for_cl100k_base():
     assert "".join(t.text for t in tokens) == text
     for t in tokens:
         assert t.is_new is None
+    for t, expected_id in zip(tokens, expected_ids):
+        assert t.bytes == list(encoding.decode_single_token_bytes(expected_id))
 
 
 def test_tokenize_returns_real_ids_for_second_encoding():

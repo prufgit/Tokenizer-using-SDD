@@ -48,6 +48,7 @@ def tokenize(text: str, encoding_name: str) -> list[Token]:
                 start=start,
                 end=end,
                 is_new=None,
+                bytes=list(token_bytes),
             )
         )
         offset = end

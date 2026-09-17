@@ -9,6 +9,7 @@ export interface Token {
   start: number;
   end: number;
   is_new: boolean | null;
+  bytes: number[];
 }
 
 export interface Statistics {

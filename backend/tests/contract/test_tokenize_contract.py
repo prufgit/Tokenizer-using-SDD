@@ -26,7 +26,15 @@ def test_tokenize_tiktoken_success_shape():
     assert isinstance(body["tokens"], list)
     assert len(body["tokens"]) > 0
     for token in body["tokens"]:
-        assert set(token.keys()) == {"index", "id", "text", "start", "end", "is_new"}
+        assert set(token.keys()) == {
+            "index",
+            "id",
+            "text",
+            "start",
+            "end",
+            "is_new",
+            "bytes",
+        }
         assert token["is_new"] is None
     stats = body["stats"]
     assert set(stats.keys()) == {

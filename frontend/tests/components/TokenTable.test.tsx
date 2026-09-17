@@ -4,26 +4,27 @@ import { describe, expect, it } from "vitest";
 import { TokenTable } from "../../src/components/results/TokenTable";
 
 describe("TokenTable", () => {
-  it("renders one row per token with index, id, text, and offset", () => {
+  it("renders one card per token with index, text, id, and bytes", () => {
     render(
       <TokenTable
         tokens={[
-          { index: 0, id: 9906, text: "Hello", start: 0, end: 5, is_new: null },
-          { index: 1, id: 11, text: ",", start: 5, end: 6, is_new: null },
+          { index: 0, id: 9906, text: "Hello", start: 0, end: 5, is_new: null, bytes: [72, 101, 108, 108, 111] },
+          { index: 1, id: 11, text: ",", start: 5, end: 6, is_new: null, bytes: [44] },
         ]}
       />
     );
 
+    expect(screen.getByTestId("token-row-0")).toHaveTextContent("#0");
     expect(screen.getByTestId("token-row-0")).toHaveTextContent("Hello");
-    expect(screen.getByTestId("token-row-0")).toHaveTextContent("9906");
-    expect(screen.getByTestId("token-row-0")).toHaveTextContent("0–5");
+    expect(screen.getByTestId("token-row-0")).toHaveTextContent("ID: 9906");
+    expect(screen.getByTestId("token-row-0")).toHaveTextContent("Bytes: [72, 101, 108, 108, 111]");
     expect(screen.getByTestId("token-row-1")).toHaveTextContent(",");
   });
 
   it("does not show a NEW badge for tokens with is_new null or false", () => {
     render(
       <TokenTable
-        tokens={[{ index: 0, id: 1, text: "hi", start: 0, end: 2, is_new: null }]}
+        tokens={[{ index: 0, id: 1, text: "hi", start: 0, end: 2, is_new: null, bytes: [104, 105] }]}
       />
     );
     expect(screen.queryByText("NEW")).not.toBeInTheDocument();
@@ -32,10 +33,10 @@ describe("TokenTable", () => {
   it("shows a NEW badge and is-new styling for newly created tokens", () => {
     render(
       <TokenTable
-        tokens={[{ index: 0, id: 1, text: "hi", start: 0, end: 2, is_new: true }]}
+        tokens={[{ index: 0, id: 1, text: "hi", start: 0, end: 2, is_new: true, bytes: [104, 105] }]}
       />
     );
     expect(screen.getByText("NEW")).toBeInTheDocument();
-    expect(screen.getByTestId("token-chip-0")).toHaveClass("is-new");
+    expect(screen.getByTestId("token-row-0")).toHaveClass("is-new");
   });
 });

@@ -12,6 +12,7 @@ class Token(BaseModel):
     start: int
     end: int
     is_new: bool | None = None
+    bytes: list[int] = []
 
 
 class Statistics(BaseModel):

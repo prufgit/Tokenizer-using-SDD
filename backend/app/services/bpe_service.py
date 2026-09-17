@@ -193,6 +193,7 @@ def tokenize(text: str, store: BpeModelStore) -> list[Token]:
             start=starts[index],
             end=ends[index],
             is_new=False,
+            bytes=list(symbol.encode("utf-8")),
         )
         for index, symbol in enumerate(symbols)
     ]

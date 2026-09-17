@@ -132,6 +132,15 @@ def test_tokenize_is_deterministic_across_repeated_calls():
     assert [(t.id, t.text) for t in first] == [(t.id, t.text) for t in second]
 
 
+def test_tokenize_bytes_match_utf8_encoding_of_token_text():
+    store = _trained_store(CLASSIC_EXAMPLE, target_vocab_size=9)
+
+    tokens = bpe_service.tokenize("aaabac", store)
+
+    for token in tokens:
+        assert token.bytes == list(token.text.encode("utf-8"))
+
+
 def test_tokenize_offsets_cover_the_full_source_text():
     store = _trained_store(CLASSIC_EXAMPLE, target_vocab_size=9)
     text = "aaabac"
