@@ -13,6 +13,7 @@ dist/
 build/
 *.log
 npm-debug.log*
+*.tsbuildinfo
 
 # Env files (keep .env.example, ignore real local env files)
 .env
